@@ -1,0 +1,6 @@
+{% include "header.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+    <div class="row justify-content-md-center">
+{{wtf.quick_form(form , novalidate=True, button_map={"Submit":"primary"})}}
+    </div>
+{% include "footer.html" %}

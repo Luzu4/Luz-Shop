@@ -1,0 +1,12 @@
+{% include "header.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+<div class="container col-sm-offset-3 col-sm-4 col-md-offset-2 col-md-8 bg- text-black ">
+    <div class="row justify-content-md-center">
+            {{wtf.quick_form(form , novalidate=True, button_map={"Submit":"primary"})}}
+    </div>
+    <div class="row justify-content-md-center">
+        New Customer? <a href="{{url_for('register')}}">Sign up →</a>
+    </div>
+</div>
+
+{% include "footer.html" %}
