@@ -210,7 +210,7 @@ def stripe_webhook():
         abort(400)
     payload = request.get_data()
     sig_header = request.environ.get('HTTP_STRIPE_SIGNATURE')
-    endpoint_secret = 'whsec_T25E1AFwvnu2fWsTvUQL0O3iV4mrKMFj'
+    endpoint_secret = 'SECRET'
     event = None
     try:
         event = stripe.Webhook.construct_event(
