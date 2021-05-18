@@ -1,0 +1,40 @@
+{% include "header.html" %}
+<div class="row justify-content-md-center">
+    <section>
+        {% for price in price_list['data'] %}
+        {% if price['id'] == product_id %}
+        {% for product in product_list['data'] %}
+        {% if product['id'] == price['product']%}
+        <div class="product">
+            <img
+                    src="{{product['images'][0]}}"
+                    alt="The cover of Stubborn Attachments"
+                    width="300"
+                    height="300"/>
+            <div class="description" style="max-width: 18rem">
+                <h3>{{product['name']}}</h3>
+                <h5>${{price['unit_amount'] / 100}}</h5>
+                <p class="card-text">{{product['description']}}</p>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <h3><label for="example-number-input" class="col-2 col-form-label">Quanity</label></h3>
+            <form onsubmit="return checkForm()">
+                <input class="form-control float-right" name="pwd" style="width:50%" type="number" value="1"
+                       id="example-number-input">
+            </form>
+        </div>
+        <button class="btn btn-primary" type="button" id="add_to_cart">Add To Cart</button>
+        <script>
+  var price_id = '{{price['id']}}'
+
+        </script>
+        {%endif%}
+        {%endfor%}
+        {%endif%}
+        {%endfor%}
+
+    </section>
+</div>
+{% include "footer.html" %}

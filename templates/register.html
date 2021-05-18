@@ -1,6 +1,14 @@
 {% include "header.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
-    <div class="row justify-content-md-center">
-{{wtf.quick_form(form , novalidate=True, button_map={"Submit":"primary"})}}
-    </div>
+
+<div class="row justify-content-md-center">
+    {% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+    {% if message %}
+    <p class="error"><strong>{{message}}</strong></p>
+    {%endif%}
+    {%endfor%}
+    {%endwith%}
+    {{wtf.quick_form(form , novalidate=True, button_map={"submit":"primary"})}}
+</div>
 {% include "footer.html" %}

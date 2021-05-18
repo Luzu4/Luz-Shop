@@ -1,40 +1,25 @@
 {% include "header.html" %}
-
 <div class="container mt-3">
-<div class="card-deck">
-  <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <h5><a href="#" class="btn btn-primary">Buy!</a>
-      <a href="#" class="btn btn-primary">Add To Cart</a>
-      20.00$
-        </h5>
-  </div>
-</div>
-  <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <h5><a href="#" class="btn btn-primary">Buy!</a>
-      <a href="#" class="btn btn-primary">Add To Cart</a>
-      20.00$
-        </h5>
-  </div>
-</div>
-  <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <h5><a href="#" class="btn btn-primary">Buy!</a>
-      <a href="#" class="btn btn-primary">Add To Cart</a>
-      20.00$
-        </h5>
-  </div>
-</div>
-</div>
+    <div class="card-deck">
+        {% for product in product_list['data'] %}
+        {% for price in price_list['data'] %}
+        {% if price['product'] == product['id'] %}
+        <div class="card m-3" style="min-width: 18rem; max-width: 18rem;">
+            <img class="card-img-top" src="{{product['images'][0]}}" alt="Card image cap" width="50" height="250">
+            <div class="card-body">
+                <h5 class="card-title">{{product['name']}}</h5>
+                <p class="card-text">{{product['description']}}</p>
+                <h5>
+                    {% if logged_in %}
+                    <a href="{{url_for('product', product_id=price['id']) }}" class="btn btn-primary ">Buy!</a>{%
+                    endif%}
+                    {{price['unit_amount']/100}}zł
+                </h5>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 {% include "footer.html" %}
